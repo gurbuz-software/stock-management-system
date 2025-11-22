@@ -194,7 +194,7 @@ $categories = ['Elektronik', 'Giyim', 'Ev & Yaşam', 'Kırtasiye', 'Diğer'];
                 <div class="products-grid">
                     <?php if (is_array($allProducts) && count($allProducts) > 0): ?>
                         <?php foreach ($allProducts as $product): ?>
-                            <div class="product-card <?php echo $product['stock_quantity'] <= $product['min_stock_level'] ? 'warning' : ''; ?>">
+                            <div class="product-card <?php echo $product['stock_quantity'] <= $product['min_stock_level'] ? 'warning' : ''; ?>" onclick="openProductModal(<?php echo htmlspecialchars(json_encode($product)); ?>)">
                                 <div class="product-header">
                                     <h4><?php echo htmlspecialchars($product['name']); ?></h4>
                                     <span class="product-category"><?php echo htmlspecialchars($product['category']); ?></span>
@@ -215,11 +215,11 @@ $categories = ['Elektronik', 'Giyim', 'Ev & Yaşam', 'Kırtasiye', 'Diğer'];
                                 </div>
 
                                 <div class="product-actions">
-                                    <button class="btn btn-sm btn-primary" onclick="openEditModal(<?php echo htmlspecialchars(json_encode($product)); ?>)">Düzenle</button>
+                                    <button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); openEditModal(<?php echo htmlspecialchars(json_encode($product)); ?>)">Düzenle</button>
                                     <form method="POST" style="display: inline;">
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Bu ürünü silmek istediğinizden emin misiniz?')">Sil</button>
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="event.stopPropagation(); return confirm('Bu ürünü silmek istediğinizden emin misiniz?')">Sil</button>
                                     </form>
                                 </div>
                             </div>
@@ -233,6 +233,24 @@ $categories = ['Elektronik', 'Giyim', 'Ev & Yaşam', 'Kırtasiye', 'Diğer'];
             </div>
         </div>
     </main>
+
+    <!-- Ürün Detay Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Ürün Detayları</h3>
+                <span class="close" onclick="closeProductModal()">&times;</span>
+            </div>
+            <div class="modal-body" style="padding: 2rem;">
+                <div id="productModalContent">
+                    <!-- Ürün detayları buraya yüklenecek -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeProductModal()">Kapat</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Düzenleme Modal -->
     <div id="editModal" class="modal">
@@ -305,6 +323,69 @@ $categories = ['Elektronik', 'Giyim', 'Ev & Yaşam', 'Kırtasiye', 'Diğer'];
 
     <script src="../js/script.js"></script>
     <script>
+        function openProductModal(product) {
+            const content = `
+                <div class="product-detail">
+                    <div class="product-header" style="margin-bottom: 1.5rem;">
+                        <h2 style="color: var(--text-primary); margin-bottom: 0.5rem;">${product.name}</h2>
+                        <span class="product-category">${product.category}</span>
+                    </div>
+                    
+                    <div class="product-info-grid" style="display: grid; gap: 1rem;">
+                        <div class="info-item">
+                            <strong>Açıklama:</strong>
+                            <p style="margin: 0.5rem 0; color: var(--text-secondary);">${product.description || 'Açıklama bulunmuyor'}</p>
+                        </div>
+                        
+                        <div class="info-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <div class="info-item">
+                                <strong>Fiyat:</strong>
+                                <p style="margin: 0.5rem 0; color: var(--primary-color); font-size: 1.2rem; font-weight: 600;">₺${parseFloat(product.price).toFixed(2)}</p>
+                            </div>
+                            
+                            <div class="info-item">
+                                <strong>Stok Miktarı:</strong>
+                                <p style="margin: 0.5rem 0; color: ${product.stock_quantity <= product.min_stock_level ? 'var(--warning-color)' : 'var(--text-primary)'};">
+                                    ${product.stock_quantity} adet
+                                    ${product.stock_quantity <= product.min_stock_level ? '⚠️ Düşük Stok' : ''}
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <div class="info-item">
+                                <strong>Minimum Stok:</strong>
+                                <p style="margin: 0.5rem 0;">${product.min_stock_level} adet</p>
+                            </div>
+                            
+                            ${product.barcode ? `
+                            <div class="info-item">
+                                <strong>Barkod:</strong>
+                                <p style="margin: 0.5rem 0; font-family: monospace;">${product.barcode}</p>
+                            </div>
+                            ` : ''}
+                        </div>
+                        
+                        ${product.image_url ? `
+                        <div class="info-item">
+                            <strong>Ürün Resmi:</strong>
+                            <div style="margin-top: 0.5rem;">
+                                <img src="${product.image_url}" alt="${product.name}" style="max-width: 100%; max-height: 200px; border-radius: var(--border-radius);">
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('productModalContent').innerHTML = content;
+            document.getElementById('productModal').style.display = 'block';
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
         function openEditModal(product) {
             document.getElementById('edit_id').value = product.id;
             document.getElementById('edit_name').value = product.name;
@@ -325,11 +406,24 @@ $categories = ['Elektronik', 'Giyim', 'Ev & Yaşam', 'Kırtasiye', 'Diğer'];
 
         // Modal dışına tıklayınca kapat
         window.onclick = function(event) {
-            const modal = document.getElementById('editModal');
-            if (event.target === modal) {
+            const productModal = document.getElementById('productModal');
+            const editModal = document.getElementById('editModal');
+            
+            if (event.target === productModal) {
+                closeProductModal();
+            }
+            if (event.target === editModal) {
                 closeEditModal();
             }
         }
+
+        // ESC tuşu ile modal kapatma
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeProductModal();
+                closeEditModal();
+            }
+        });
     </script>
 </body>
 </html>
