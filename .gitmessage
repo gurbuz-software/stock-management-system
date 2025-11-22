@@ -1,0 +1,23 @@
+# <type>: <subject>
+
+# <body>
+
+# --- COMMIT MESSAGE GUIDE ---
+# type: feat, fix, docs, style, refactor, test, chore
+# subject: 50 karakteri geçmeyen kısa açıklama
+# body: Detaylı açıklama (isteğe bağlı)
+
+# Örnekler:
+# feat: Kullanıcı giriş sistemi eklendi
+# fix: Header hatası düzeltildi
+# style: CSS efektleri iyileştirildi
+# refactor: Kod yapısı optimize edildi
+
+# --- TYPE AÇIKLAMALARI ---
+# feat: Yeni özellik
+# fix: Hata düzeltme
+# docs: Dokümantasyon değişikliği
+# style: Formatlama, noktalama değişiklikleri
+# refactor: Kod yeniden yapılandırma
+# test: Test ekleme/düzeltme
+# chore: Build süreçleri, araç değişiklikleri

@@ -1,9 +1,6 @@
 <?php
 session_start();
 require_once 'config/database.php';
-?>
-<script src="js/interactive-bg.js"></script>
-<?php
 
 // Veritabanı tablolarını kontrol et ve gerekirse oluştur
 function checkAndCreateTables($pdo) {

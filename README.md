@@ -23,12 +23,19 @@ Modern, şık ve kullanıcı dostu bir stok takip uygulaması. PHP, MySQL ve CSS
 - Barkod desteği
 - Ürün resimleri
 
-### 🎨 Modern Tasarım
+### 🎨 Modern Tasarım & Efektler
 - Responsive tasarım
 - Modern CSS (Grid, Flexbox)
 - Animasyonlar ve geçişler
 - Toast mesajları
 - Modal pencereler
+- **Yeni CSS Efektleri:**
+  - Gradient arkaplanlar
+  - Glassmorphism efektleri
+  - Mouse takip eden interaktif arkaplan
+  - Floating particles animasyonları
+  - Smooth scroll ve hover efektleri
+  - Modern button ve form stilleri
 
 ## Kurulum
 
@@ -146,13 +153,14 @@ Kayıt sayfasından yeni hesap oluşturabilirsiniz.
 │   ├── database.php      # Veritabanı bağlantısı
 │   └── init.sql          # Veritabanı şeması
 ├── css/
-│   └── style.css         # Modern CSS stilleri
+│   └── style.css         # Modern CSS stilleri ve efektler
 ├── includes/
 │   ├── auth.php          # Kimlik doğrulama
 │   ├── products.php      # Ürün yönetimi
 │   └── users.php         # Kullanıcı yönetimi
 ├── js/
-│   └── script.js         # JavaScript fonksiyonları
+│   ├── script.js         # JavaScript fonksiyonları
+│   └── interactive-bg.js # Interaktif arkaplan efekti
 ├── pages/
 │   ├── login.php         # Giriş sayfası
 │   ├── register.php      # Kayıt sayfası
@@ -161,6 +169,7 @@ Kayıt sayfasından yeni hesap oluşturabilirsiniz.
 │   ├── admin.php         # Admin paneli
 │   └── logout.php        # Çıkış işlemi
 ├── index.php             # Ana sayfa
+├── .gitmessage           # Git commit mesajı şablonu
 └── README.md             # Bu dosya
 ```
 
@@ -178,8 +187,9 @@ Kayıt sayfasından yeni hesap oluşturabilirsiniz.
 - **Backend:** PHP 7.4+
 - **Database:** MySQL 5.7+
 - **Frontend:** HTML5, CSS3, JavaScript
-- **Styling:** Modern CSS (CSS Grid, Flexbox)
+- **Styling:** Modern CSS (CSS Grid, Flexbox, Animations)
 - **Security:** PDO, password_hash, session management
+- **Version Control:** Git (optimized aliases & commit template)
 
 ## Geliştirici
 
@@ -235,6 +245,27 @@ DB_PORT=3306
 - SSL/TLS bağlantıları kullanın
 - Regular backup alın
 - Monitoring ve logging aktif edin
+
+## Git Ayarları
+
+Proje, geliştirici verimliliğini artıran optimize edilmiş Git ayarları içerir:
+
+### Git Alias'ları
+```bash
+git st    # status
+git co    # checkout
+git ci    # commit
+git br    # branch
+git lg    # renkli log
+git hist  # tarihli log
+git last  # son commit
+git graph # grafik log
+```
+
+### Commit Mesajı Şablonu
+- Otomatik commit mesajı şablonu
+- Conventional commits formatı
+- Türkçe açıklamalar
 
 ## Lisans
 

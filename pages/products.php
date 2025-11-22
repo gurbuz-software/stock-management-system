@@ -86,7 +86,6 @@ $categories = ['Elektronik', 'Giyim', 'Ev & Yaşam', 'Kırtasiye', 'Diğer'];
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <script src="../js/interactive-bg.js"></script>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -426,5 +425,6 @@ $categories = ['Elektronik', 'Giyim', 'Ev & Yaşam', 'Kırtasiye', 'Diğer'];
             }
         });
     </script>
+    <script src="../js/interactive-bg.js"></script>
 </body>
 </html>

@@ -243,5 +243,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     </script>
+    <script src="../js/interactive-bg.js"></script>
 </body>
 </html>
