@@ -33,7 +33,7 @@ Modern, şık ve kullanıcı dostu bir stok takip uygulaması. PHP, MySQL ve CSS
 ## Kurulum
 
 ### Docker ile Kurulum (Önerilen)
-dasdsadasd
+
 #### 1. Gereksinimler
 - Docker
 - Docker Compose
