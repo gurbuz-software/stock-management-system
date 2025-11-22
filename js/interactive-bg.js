@@ -167,8 +167,8 @@ class FloatingParticles {
 }
 
 // Add CSS for floating animation
-const style = document.createElement('style');
-style.textContent = `
+const floatStyle = document.createElement('style');
+floatStyle.textContent = `
     @keyframes float {
         0%, 100% {
             transform: translate(0, 0) rotate(0deg);
@@ -188,7 +188,7 @@ style.textContent = `
         will-change: transform;
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(floatStyle);
 
 // Initialize particles
 document.addEventListener('DOMContentLoaded', () => {

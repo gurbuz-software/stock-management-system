@@ -190,8 +190,8 @@ function showToast(message, type = 'info') {
 }
 
 // CSS animasyonları
-const style = document.createElement('style');
-style.textContent = `
+const toastStyle = document.createElement('style');
+toastStyle.textContent = `
     @keyframes slideIn {
         from {
             transform: translateX(100%);
@@ -214,7 +214,7 @@ style.textContent = `
         }
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(toastStyle);
 
 // Mobil Navigasyon
 function initializeMobileNavigation() {
