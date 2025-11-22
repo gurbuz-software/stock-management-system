@@ -6,6 +6,6 @@ require_once '../includes/auth.php';
 $auth = new Auth($pdo);
 $result = $auth->logout();
 
-header('Location: login.php');
+header('Location: giris');
 exit;
 ?>

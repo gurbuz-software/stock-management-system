@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result['success']) {
             $_SESSION['success'] = $result['message'];
-            header('Location: login.php');
+            header('Location: giris');
             exit;
         } else {
             $error = $result['message'];
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
 
             <div class="auth-footer">
-                <p>Zaten hesabınız var mı? <a href="login.php">Giriş Yap</a></p>
+                <p>Zaten hesabınız var mı? <a href="giris">Giriş Yap</a></p>
             </div>
         </div>
     </div>

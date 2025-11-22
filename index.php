@@ -47,7 +47,7 @@ if ($isLoggedIn) {
     header('Location: pages/dashboard.php');
     exit;
 } else {
-    header('Location: pages/login.php');
+    header('Location: giris');
     exit;
 }
 ?>

@@ -9,7 +9,7 @@ $products = new Products($pdo);
 
 // Giriş kontrolü
 if (!$auth->isLoggedIn()) {
-    header('Location: login.php');
+    header('Location: giris');
     exit;
 }
 
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
     }
 
-    header('Location: products.php');
+    header('Location: urunler');
     exit;
 }
 
@@ -92,12 +92,12 @@ $categories = ['Elektronik', 'Giyim', 'Ev & Yaşam', 'Kırtasiye', 'Diğer'];
             <div class="header-content">
                 <h1 class="logo">Stok Takip</h1>
                 <nav class="nav">
-                    <a href="dashboard.php" class="nav-link">Dashboard</a>
-                    <a href="products.php" class="nav-link active">Ürünler</a>
+                    <a href="panel" class="nav-link">Dashboard</a>
+                    <a href="urunler" class="nav-link active">Ürünler</a>
                     <?php if ($auth->isAdmin()): ?>
-                        <a href="admin.php" class="nav-link">Admin Panel</a>
+                        <a href="admin" class="nav-link">Admin Panel</a>
                     <?php endif; ?>
-                    <a href="logout.php" class="nav-link">Çıkış</a>
+                    <a href="cikis" class="nav-link">Çıkış</a>
                 </nav>
                 <div class="user-info">
                     <span>Hoş geldin, <?php echo htmlspecialchars($_SESSION['full_name']); ?></span>

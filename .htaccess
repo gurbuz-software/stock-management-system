@@ -1,0 +1,27 @@
+RewriteEngine On
+
+# Giriş sayfası için URL yeniden yazma
+RewriteRule ^giris$ pages/login.php [L]
+
+# Kayıt sayfası için URL yeniden yazma
+RewriteRule ^kayit$ pages/register.php [L]
+
+# Panel sayfası için URL yeniden yazma
+RewriteRule ^panel$ pages/dashboard.php [L]
+
+# Ürünler sayfası için URL yeniden yazma
+RewriteRule ^urunler$ pages/products.php [L]
+
+# Admin sayfası için URL yeniden yazma
+RewriteRule ^admin$ pages/admin.php [L]
+
+# Çıkış sayfası için URL yeniden yazma
+RewriteRule ^cikis$ pages/logout.php [L]
+
+# Mevcut dosyalar ve dizinler için doğrudan erişime izin ver
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Ana sayfa için index.php'ye yönlendir
+RewriteRule ^$ index.php [L]

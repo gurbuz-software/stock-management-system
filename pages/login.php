@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = $auth->login($username, $password);
 
     if ($result['success']) {
-        header('Location: dashboard.php');
+        header('Location: panel');
         exit;
     } else {
         $error = $result['message'];
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
 
             <div class="auth-footer">
-                <p>Hesabınız yok mu? <a href="register.php">Kayıt Ol</a></p>
+                <p>Hesabınız yok mu? <a href="kayit">Kayıt Ol</a></p>
             </div>
 
             <div class="demo-accounts">

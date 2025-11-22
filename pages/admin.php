@@ -9,7 +9,7 @@ $users = new Users($pdo);
 
 // Giriş ve admin kontrolü
 if (!$auth->isLoggedIn() || !$auth->isAdmin()) {
-    header('Location: dashboard.php');
+    header('Location: panel');
     exit;
 }
 
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $_SESSION['error'] = $result['message'];
             }
-            header('Location: admin.php');
+            header('Location: admin');
             exit;
             break;
 
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $_SESSION['error'] = $result['message'];
             }
-            header('Location: admin.php');
+            header('Location: admin');
             exit;
             break;
     }
@@ -67,10 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="header-content">
                 <h1 class="logo">Stok Takip</h1>
                 <nav class="nav">
-                    <a href="dashboard.php" class="nav-link">Dashboard</a>
-                    <a href="products.php" class="nav-link">Ürünler</a>
-                    <a href="admin.php" class="nav-link active">Admin Panel</a>
-                    <a href="logout.php" class="nav-link">Çıkış</a>
+                    <a href="panel" class="nav-link">Dashboard</a>
+                    <a href="urunler" class="nav-link">Ürünler</a>
+                    <a href="admin" class="nav-link active">Admin Panel</a>
+                    <a href="cikis" class="nav-link">Çıkış</a>
                 </nav>
                 <div class="user-info">
                     <span>Hoş geldin, <?php echo htmlspecialchars($_SESSION['full_name']); ?> (Admin)</span>
