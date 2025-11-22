@@ -1,0 +1,42 @@
+# Git dosyaları
+.git
+.gitignore
+
+# IDE dosyaları
+.vscode
+.idea
+*.swp
+*.swo
+
+# Log dosyaları
+*.log
+logs/
+
+# Cache dosyaları
+.cache/
+__pycache__/
+
+# Node modules (eğer varsa)
+node_modules/
+
+# OS dosyaları
+.DS_Store
+Thumbs.db
+
+# Docker dosyaları (kendini ignore etme)
+!Dockerfile
+!docker-compose.yml
+!docker-compose.prod.yml
+
+# Environment dosyaları
+.env
+.env.local
+.env.production
+
+# Backup dosyaları
+*.bak
+*.backup
+
+# Temporary dosyalar
+tmp/
+temp/

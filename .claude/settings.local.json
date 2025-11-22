@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(findstr:*)",
+      "Bash(mysql:*)",
+      "Bash(\"C:\\xampp\\mysql\\bin\\mysql.exe\":*)",
+      "Bash(xcopy:*)",
+      "Bash(\"C:\\xampp\\xampp-control.exe\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

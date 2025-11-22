@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # PHP Apache uygulaması
+  app:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_HOST=db
+      - DB_NAME=stock_management
+      - DB_USER=root
+      - DB_PASSWORD=password
+    depends_on:
+      - db
+    networks:
+      - stock-network
+
+  # MySQL veritabanı
+  db:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=stock_management
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - stock-network
+
+  # phpMyAdmin (isteğe bağlı)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - stock-network
+
+volumes:
+  db_data:
+
+networks:
+  stock-network:
+    driver: bridge
