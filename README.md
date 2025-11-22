@@ -52,6 +52,41 @@ docker-compose up app -d
 - **phpMyAdmin:** http://localhost:8081 (isteğe bağlı)
 - **MySQL:** localhost:3306
 
+### Dokploy ile Deployment
+
+#### 1. Repository'yi Dokploy'a Bağlama
+1. Dokploy panelinde "New Application" seçeneğine tıklayın
+2. Git repository URL'nizi girin
+3. Branch seçin (genellikle main/master)
+
+#### 2. Environment Variables (Ortam Değişkenleri)
+Dokploy'da aşağıdaki environment değişkenlerini ayarlayın:
+
+```env
+DB_HOST=your_mysql_host
+DB_NAME=your_database_name
+DB_USER=your_database_user
+DB_PASSWORD=your_database_password
+DB_PORT=3306
+```
+
+#### 3. Build Settings
+- **Build Method:** Dockerfile
+- **Dockerfile Path:** Dockerfile (default)
+- **Build Context:** . (default)
+
+#### 4. Veritabanı Tabloları
+Uygulama ilk başlatıldığında otomatik olarak:
+- Veritabanı bağlantısını kontrol eder
+- Tabloları oluşturur
+- Varsayılan admin kullanıcısını ekler
+- Temel kategorileri oluşturur
+
+#### 5. Health Check
+Uygulama otomatik health check ile izlenir:
+- **App:** HTTP 200 status kontrolü
+- **Database:** MySQL ping kontrolü
+
 ### Manuel Kurulum
 
 #### 1. Gereksinimler
@@ -178,12 +213,28 @@ docker-compose exec app bash
 docker-compose exec db mysql -u root -p
 ```
 
-## Production için Docker
+## Production için Docker & Dokploy
 
-Production ortamı için aşağıdaki ayarları yapabilirsiniz:
+### Dokploy Production Ayarları
+1. **Auto Deploy:** Aktif edin (yeni commit'lerde otomatik deploy)
+2. **Health Checks:** Aktif edin
+3. **Restart Policy:** `unless-stopped`
+4. **Resource Limits:** Uygun CPU/Memory limitleri ayarlayın
 
-1. `.env` dosyası oluşturun ve environment değişkenlerini ayarlayın
-2. `docker-compose.prod.yml` dosyası oluşturarak production ayarlarını yapılandırın
+### Environment Variables (Production)
+```env
+DB_HOST=production_db_host
+DB_NAME=production_database
+DB_USER=production_user
+DB_PASSWORD=strong_production_password
+DB_PORT=3306
+```
+
+### Güvenlik Önlemleri
+- Veritabanı şifreleri güçlü ve unique olmalı
+- SSL/TLS bağlantıları kullanın
+- Regular backup alın
+- Monitoring ve logging aktif edin
 
 ## Lisans
 
