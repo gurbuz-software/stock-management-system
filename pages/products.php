@@ -86,6 +86,7 @@ $categories = ['Elektronik', 'Giyim', 'Ev & Yaşam', 'Kırtasiye', 'Diğer'];
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <script src="../js/interactive-bg.js"></script>
     <!-- Header -->
     <header class="header">
         <div class="container">

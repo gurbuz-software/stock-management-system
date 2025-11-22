@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="auth-page">
+    <script src="../js/interactive-bg.js"></script>
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-header">

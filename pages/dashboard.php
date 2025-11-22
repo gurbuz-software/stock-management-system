@@ -32,6 +32,7 @@ $totalCategoriesCount = count($totalCategories);
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+    <script src="../js/interactive-bg.js"></script>
     <!-- Header -->
     <header class="header">
         <div class="container">
