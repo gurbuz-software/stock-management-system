@@ -1,7 +1,8 @@
 -- Stok Yönetim Sistemi Veritabanı Şeması
+-- Dokploy için root veritabanında çalışacak şekilde güncellendi
 
-CREATE DATABASE IF NOT EXISTS stock_management;
-USE stock_management;
+-- Mevcut veritabanını kullan (Dokploy root veritabanını kullanıyor)
+-- Veritabanı oluşturma satırları kaldırıldı
 
 -- Kullanıcılar tablosu
 CREATE TABLE IF NOT EXISTS users (

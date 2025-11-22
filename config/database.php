@@ -6,6 +6,9 @@ $username = getenv('DB_USER') ?: 'root';
 $password = getenv('DB_PASSWORD') ?: 'root';
 $port = getenv('DB_PORT') ?: '3306';
 
+// Debug bilgileri
+// echo "<!-- Debug: DB_HOST=$host, DB_NAME=$dbname, DB_USER=$username, DB_PORT=$port -->";
+
 // Bağlantı seçenekleri
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

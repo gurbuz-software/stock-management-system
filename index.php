@@ -7,18 +7,28 @@ function checkAndCreateTables($pdo) {
     try {
         // users tablosunu kontrol et
         $pdo->query("SELECT 1 FROM users LIMIT 1");
+        echo "<!-- Debug: users tablosu mevcut -->";
     } catch (PDOException $e) {
         // Tablo yoksa oluştur
         echo "<div style='padding: 20px; background: #f8f9fa; border-left: 4px solid #007bff; margin: 20px;'>";
         echo "<h3>Veritabanı Kurulumu</h3>";
         echo "<p>Tablolar oluşturuluyor... Lütfen bekleyin.</p>";
+        echo "<p style='color: orange;'>Hata: " . htmlspecialchars($e->getMessage()) . "</p>";
         
-        // SQL dosyasını oku ve çalıştır
-        $sql = file_get_contents('config/init.sql');
-        $pdo->exec($sql);
+        try {
+            // SQL dosyasını oku ve çalıştır
+            $sql = file_get_contents('config/init.sql');
+            if ($sql === false) {
+                throw new Exception("init.sql dosyası bulunamadı!");
+            }
+            
+            $pdo->exec($sql);
+            echo "<p style='color: green;'>✓ Tablolar başarıyla oluşturuldu!</p>";
+            echo "<p><a href='pages/login.php'>Giriş Sayfasına Git</a></p>";
+        } catch (Exception $ex) {
+            echo "<p style='color: red;'>✗ Tablo oluşturma hatası: " . htmlspecialchars($ex->getMessage()) . "</p>";
+        }
         
-        echo "<p style='color: green;'>✓ Tablolar başarıyla oluşturuldu!</p>";
-        echo "<p><a href='pages/login.php'>Giriş Sayfasına Git</a></p>";
         echo "</div>";
         exit;
     }
